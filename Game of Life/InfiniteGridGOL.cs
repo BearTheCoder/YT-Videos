@@ -46,7 +46,7 @@ public class InfiniteGridGOL : MonoBehaviour {
                 }
             }
             else if (Input.GetMouseButton(1)) {
-                List<GameObject> NewInGameSqaures = MakeNewGOList(InGameCells);
+                List<GameObject> NewInGameSqaures = new List<GameObject>(InGameCells);
                 foreach (GameObject GO in InGameCells) {
                     if (RoundedPosi == GO.transform.position) {
                         NewInGameSqaures.Remove(GO);
@@ -109,11 +109,6 @@ public class InfiniteGridGOL : MonoBehaviour {
         }
         AliveCells = LocalSSAliveCells;
         DeadCells = LocalSSDeadCells;
-    }
-    private List<GameObject> MakeNewGOList(List<GameObject> LocalOldList) {
-        List<GameObject> NewList = new List<GameObject>();
-        foreach (GameObject GO in LocalOldList) { NewList.Add(GO); }
-        return NewList;
     }
 }
 class AliveCell {
