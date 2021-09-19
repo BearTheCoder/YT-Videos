@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class InfiniteGridGOL : MonoBehaviour {
-    [SerialzieField] GameObject AliveCell;
+    [SerializeField] GameObject AliveCell;
     private GameObject AliveCellsParent;
     private List<GameObject> InGameCells;
     private List<AliveCell> AliveCells;
