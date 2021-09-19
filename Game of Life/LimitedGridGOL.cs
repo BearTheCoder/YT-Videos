@@ -16,12 +16,11 @@ using UnityEngine.SceneManagement;
 public class LimitedGridGOL : MonoBehaviour {
 	[SerializeField] GameObject AliveCell;
 	private Camera MC;
-	private int[,] GameGrid;
+	private int[,] GameGrid, NeighborsArray;
+	private GameObject[,] InGameCells;
 	private GameObject AliveCellParent;
 	private int GridArea;
-	private int[,] NeighborsArray;
 	private bool GameStart;
-	private GameObject[,] InGameCells;
 	private void Start() { GetReferences(); }
 	private void Update() { FlowControl(); }
 	private void GetReferences() {
