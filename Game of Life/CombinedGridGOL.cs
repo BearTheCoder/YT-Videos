@@ -1,9 +1,8 @@
-
 /*	Instructions:
  *		1.) Create a new C# script named "CombinedGridGOL"
  *		2.) Copy this script and paste it onto the script you created. Then save it.
  *		3.) Drag the new script onto the camera. Then press play.
- *		4.) Uncomment line 74, this will cause an error. In the parenthesis, put your scene number. If you only have 1 scene, put "0".
+ *		4.) Uncomment line 74, as it is now, it will cause an error. In the parenthesis, put your scene number. If you only have 1 scene, put "0".
  *		5.) Adjust the variable "GridAreaSize" until you find a number that will run with a reasonable framerate and not throw an OutOfMemory exception. The camera will auto-center per Line 45.
  *				My computer at time of writing this had 32gb of memory and a 4GHz cpu and I could run 100 frames a second at a size of 20,000. 50,000 threw an OOM exception.
  *	Controls:
@@ -14,7 +13,6 @@
  *		Press enter to reload the scene.
  *		Press escape to close the application. (If you chose to build the game) 
  */
-
 using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -24,13 +22,15 @@ public class CombinedGridGOL : MonoBehaviour {
 	private int[,] NeighborCountArray;
 	private GameObject AliveCell;
 	private GameObject AliveCellParent;
-	private bool GameStart = false;
-	private int GridAreaSize = 2000;
+	private bool GameStart;
+	private int GridAreaSize;
 	private List<Vector3> ListOfAllNeighbors;
 	private List<GameObject> ListOfAllAliveCells;
 	private void Start() { GetReferences(); }
 	private void Update() { FlowControl(); }
 	private void GetReferences() {
+		GameStart = false;
+		GridAreaSize = 2000;
 		AliveCellParent = new GameObject("AliveCellParent");
 		Texture2D T2D = Texture2D.whiteTexture;
 		Sprite sprite = Sprite.Create(T2D, new Rect(0, 0, T2D.width, T2D.height), new Vector2(0.5f, 0.5f), 4f);
