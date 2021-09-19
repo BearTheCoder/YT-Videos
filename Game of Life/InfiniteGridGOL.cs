@@ -1,16 +1,26 @@
-// This is attach to an empty game object in the scene.
-// The only thing require is a 1m x 1m square to act as the "Alive" cell;
+/* Step 1: Save this script in your asset folder.
+*  Step 2: Attach this script to the MainCamera.
+*  Step 3: Create a square sprite and save it as a prefab.
+*  Step 4: Attach the new prefab to the variable on
+*  Controls:
+*		Left click to add an Alive Cell.
+*		Right click to remove an Alive Cell.
+*		Middle-Mouse click to move the camera to your mouse pointer.
+*		Press Space to start the Game of Life.
+*		Press enter to reload the scene.
+*		Press escape to close the application. (If you chose to build the game) 
+*/
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class InfiniteGridGOL : MonoBehaviour {
-    public GameObject AliveCell;
+    [SerialzieField] GameObject AliveCell;
     private GameObject AliveCellsParent;
     private List<GameObject> InGameCells;
     private List<AliveCell> AliveCells;
     private List<DeadCell> DeadCells;
     private Camera MC;
-    private bool GameStart = false;
+    private bool GameStart;
     void Start() { GetReferences(); }
     void Update() {
         CheckForGameStart();
@@ -18,6 +28,7 @@ public class InfiniteGridGOL : MonoBehaviour {
         GameOfLife();
     }
     private void GetReferences() {
+        GameStart = false;
         InGameCells = new List<GameObject>();
         AliveCellsParent = new GameObject("AliveCellsParent");
         MC = Camera.main;
