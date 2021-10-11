@@ -2,6 +2,7 @@
  * Code iterated from CodingTrain for Unity: https://www.youtube.com/watch?v=QHEQuoIKgNE
  * 
  * This currently works best at 1920x1080(FHD) or multiples of that (e.g. 480x270 is 4x smaller).
+ * For best results, allow the application to run in background and let the program to run for longer.
  * 
  * Instructions:
  *  1.) Import the FHD or similar image that you wish to use with the algorithm. (Algorith will ignore full transparent pixels)
