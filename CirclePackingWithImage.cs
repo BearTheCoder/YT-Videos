@@ -21,7 +21,7 @@
  *  10.) The "GrowSpeed" controls how fast the "Circles" grow, lower = faster. (0.2 is default, test what works best for your image.)
  *  
  *  [OPTIONALS]
- *  1.) Change the camera color to a nuetral grayscale color. (Anywhere from white to black)
+ *  1.) Change the camera color to a neutral grayscale color. (Anywhere from white to black)
  *  2.) I also iterated on a screenshot script from CodeMonkey that is great for this project.
  *      Add it to the camera to save the project as an image.
  *      Code can be found here: https://github.com/BearTheCoder/YT-Videos/blob/main/ScreenshotController.cs
