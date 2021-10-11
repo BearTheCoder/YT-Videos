@@ -1,10 +1,12 @@
 /* Code iterated from Code Monkey for Unity on Windows: https://www.youtube.com/watch?v=lT-SRLKUe5k
  *
+ * The camera background will not save and instead will be rendered as a transparent alpha
+ *
  * Instructions:
  *  1.) Attach file to the camera in the scene.
  *  2.) Press '0' on the top of the keyboard to take screen shot.
  *  3.) Screenshots will save to Pictures folder.
- *  4.) Uncomment line 40 if you are like me and need feedback that the code worked.
+ *  4.) Uncomment line 42 if you are like me and need feedback that the code worked.
  *  
  *  Follow me on YT: https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA
  *  Yell at me on Twitter: https://twitter.com/BearTheCoder
