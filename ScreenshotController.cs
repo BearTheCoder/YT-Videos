@@ -1,0 +1,36 @@
+/* Code iterated from Code Monkey for Unity: https://www.youtube.com/watch?v=lT-SRLKUe5k
+ *
+ * Instructions:
+ *  Attach file to the camera in the scene.
+ *  Press '0' on the top of the keyboard to take screen shot.
+ *  Screenshots will save to Pictures folder.
+ *  
+ *  Follow me on YT: https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA
+ *  Yell at me on Twitter: https://twitter.com/BearTheCoder
+ *  
+ */
+
+using UnityEngine;
+public class ScreenshotController : MonoBehaviour {
+    private bool CanTakeScreenshot = false;
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            CanTakeScreenshot = true;
+        }
+    }
+    private void OnPostRender() {
+        if (CanTakeScreenshot) {
+            gameObject.GetComponent<Camera>().targetTexture = RenderTexture.GetTemporary(Screen.width, Screen.height);
+            RenderTexture CameraTexture = gameObject.GetComponent<Camera>().targetTexture;
+            Texture2D NewTexture = new Texture2D(CameraTexture.width, CameraTexture.height, TextureFormat.ARGB32, false);
+            Rect NewRectangle = new Rect(0, 0, CameraTexture.width, CameraTexture.height);
+            NewTexture.ReadPixels(NewRectangle, 0, 0);
+            byte[] ImageBytes = NewTexture.EncodeToPNG();
+            System.IO.File.WriteAllBytes(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) 
+                + "/Screenshot_" + System.DateTime.Now.ToString("MMddyyyyhhmmss") + ".png", ImageBytes);
+            RenderTexture.ReleaseTemporary(CameraTexture);
+            gameObject.GetComponent<Camera>().targetTexture = null;
+            CanTakeScreenshot = false;
+        }
+    }
+}
