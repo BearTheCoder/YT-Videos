@@ -1,6 +1,7 @@
-/* Code iterated from Code Monkey for Unity on Windows: https://www.youtube.com/watch?v=lT-SRLKUe5k
+/* 
+ * Code iterated from Code Monkey for Unity on Windows by BearTheCoder: https://www.youtube.com/watch?v=lT-SRLKUe5k
  *
- * The camera background will not save and instead will be rendered as a transparent alpha
+ * The camera background will not save and instead will be rendered as a transparent alpha.
  *
  * Instructions:
  *  1.) Attach file to the camera in the scene.
@@ -11,23 +12,18 @@
  *  Follow me on YT: https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA
  *  Yell at me on Twitter: https://twitter.com/BearTheCoder
  *  
+ *  Ok, bye.
+ *  
  */
 
 using UnityEngine;
-public class ScreenshotController : MonoBehaviour
-{
+public class ScreenshotController : MonoBehaviour {
     private bool CanTakeScreenshot = false;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            CanTakeScreenshot = true;
-        }
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) { CanTakeScreenshot = true; }
     }
-    private void OnPostRender()
-    {
-        if (CanTakeScreenshot)
-        {
+    private void OnPostRender() {
+        if (CanTakeScreenshot) {
             gameObject.GetComponent<Camera>().targetTexture = RenderTexture.GetTemporary(Screen.width, Screen.height);
             RenderTexture CameraTexture = gameObject.GetComponent<Camera>().targetTexture;
             Texture2D NewTexture = new Texture2D(CameraTexture.width, CameraTexture.height, TextureFormat.ARGB32, false);
@@ -39,7 +35,7 @@ public class ScreenshotController : MonoBehaviour
             RenderTexture.ReleaseTemporary(CameraTexture);
             gameObject.GetComponent<Camera>().targetTexture = null;
             CanTakeScreenshot = false;
-            //Debug.Log("Screenshot saved.");
+            Debug.Log("Screenshot saved.");
         }
     }
 }
