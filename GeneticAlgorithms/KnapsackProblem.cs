@@ -1,8 +1,18 @@
+/*
+    To use this code: 
+        1.) Create a new Console Application (Frameworks) name it "KnapSackProblem"
+        2.) Copy everything in this file.
+        3.) Replace everything in your application with what you copied.
+        4.) If you named it something other than "KnapSackProblem", 
+                Replace line 16 where it says "KnapSackProblem" to the name you choose.
+ */
+
 using System;
 using System.Linq;
 using System.Diagnostics;
 using System.Globalization;
 using System.Collections.Generic;
+
 namespace KnapSackProblem {
 
     // Agent or Bot Class -------------------------------------------
@@ -17,36 +27,44 @@ namespace KnapSackProblem {
 
     // Genetic Algorithm ------------------------------------------
     class Program {
+
+        // Functional Variables --------------------------------------------------
         private static List<double> Items;
         private static List<Bot> Population;
         private static Random RandNum;
-        private static int BagWeight, GenerationCount, FirstPerformanceGeneration, BestGeneration;
-        private static double BestPerformance, FirstPerformance;
         private static Stopwatch Watch;
+        private static int BagWeight;
+
+        // Statistical Variables --------------------------------------------------
+        private static int GenerationCount, FirstPerformanceGeneration, BestGeneration;
+        private static double BestPerformance, FirstPerformance;
+
+        // Functional "Settings" Variables ----------------------------------------
         private static readonly int PopulationSize = 2500;   // More = Better but SLOWER
         private static readonly int ItemCount = 1000;        // More = Harder
         private static readonly int MaxGenerations = 500000; // More = Better Optimization
         private static readonly int BagWeightMin = 30;      // Less = Harder
         private static readonly int BagWeightMax = 50;      // More = Easier
         private static readonly double ItemWeightMax = 10f;  // More = Harder
+
         static void Main(string[] args) {
-            LoadInit();
+            InitializeVariables();
+            CreateItems();
+            CreateFirstGeneration();
             for (int i = 0; i < MaxGenerations; i++) {
-                Testing();
+                FitnessTesting();
                 DisplayStats();
                 Selection();
             }
             DisplayFinalStats();
         }
-        private static void LoadInit() {
+        private static void InitializeVariables() {
             RandNum = new Random();
             Watch = new Stopwatch();
             Items = new List<double>();
             Population = new List<Bot>();
             BagWeight = RandNum.Next(BagWeightMin, BagWeightMax);
             Watch.Start();
-            CreateItems();
-            CreateFirstGeneration();
         }
         private static void CreateItems() {
             for (int i = 0; i < ItemCount; i++) {
@@ -66,9 +84,7 @@ namespace KnapSackProblem {
             if (RandNum.Next(0, 2) == 0) { return true; }
             else { return false; }
         }
-        private static void Testing() {
-
-            //Testing ----------------------------------------------------------------------------
+        private static void FitnessTesting() {
             GenerationCount++;
             foreach(Bot A in Population) {
                 double TotalWeight = 0;
@@ -81,14 +97,12 @@ namespace KnapSackProblem {
             }
         }
         private static void Selection() {
-
             // Sorting ---------------------------------------------------------------------------
             List<Bot> SortedAgents = Population.OrderByDescending(o => o.FitnessValue).ToList();
             if (SortedAgents[0].FitnessValue == 0) {
                 SortedAgents = Population.OrderBy(o => o.ItemsWeight).ToList();
             }
             Population.Clear();
-
             //Selection --------------------------------------------------------------------------
             for (int i = 0; i < (SortedAgents.Count / 10); i++) {
                 Population.Add(SortedAgents[i]);
@@ -102,6 +116,7 @@ namespace KnapSackProblem {
             Bot Bot = new Bot();
             for (int i = 0; i < ItemCount; i++) {
                 int CrossoverPoint = RandNum.Next(1, Parent1.Chromosome.Count);
+                // New Chromosome Creation and Mutation ---------------------------------------------
                 if (RandNum.Next(0, ItemCount) != 1) {
                     if (i < CrossoverPoint) { Bot.Chromosome.Add(Parent1.Chromosome[i]); }
                     else { Bot.Chromosome.Add(Parent2.Chromosome[i]); }
