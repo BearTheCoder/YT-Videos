@@ -1,5 +1,5 @@
 /*
-    To use this code: 
+    To use this code (C#): 
         1.) Create a new Console Application (Frameworks) name it "KnapSackProblem"
         2.) Copy everything in this file.
         3.) Replace everything in your application with what you copied.
@@ -40,9 +40,9 @@ namespace KnapSackProblem {
         private static double BestPerformance, FirstPerformance;
 
         // Functional "Settings" Variables ----------------------------------------
-        private static readonly int PopulationSize = 2500;   // More = Better but SLOWER
-        private static readonly int ItemCount = 1000;        // More = Harder
-        private static readonly int MaxGenerations = 500000; // More = Better Optimization
+        private static readonly int PopulationSize = 100;   // More = Better but SLOWER
+        private static readonly int ItemCount = 100;        // More = Harder
+        private static readonly int MaxGenerations = 50000; // More = Better Optimization
         private static readonly int BagWeightMin = 30;      // Less = Harder
         private static readonly int BagWeightMax = 50;      // More = Easier
         private static readonly double ItemWeightMax = 10f;  // More = Harder
