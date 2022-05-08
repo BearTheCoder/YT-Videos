@@ -15,7 +15,7 @@ namespace ColorPalletCreator {
     class Program {
         static int Tolerance = 40;
         static void Main(string[] args) {
-            Bitmap ImageBM = new Bitmap(Image.FromFile(@"C:\Users\aaron\Downloads\Pallet2.jpg"));
+            Bitmap ImageBM = new Bitmap(Image.FromFile(@"Place File Path Here"));
             List<ColorObject> ColorObjects = new List<ColorObject>();
             List<Color> ActivePalletColors = new List<Color>();
             List<Color> CheckedColors = new List<Color>();
@@ -86,7 +86,7 @@ namespace ColorPalletCreator {
                 k -= 4;
                 if (i % 200 == 0 && i != 0) { k += 5; }
             }
-            PalletImage.Save("testbitmap2.bmp");
+            PalletImage.Save("OutputPallet.bmp");
         }
     }
 }
