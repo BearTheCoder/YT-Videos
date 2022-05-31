@@ -1,15 +1,15 @@
 using JumpKingMacro;
-using WindowsInput;
-using WindowsInput.Native;
 using System.Numerics;
+using WindowsInput; //NuGet
+using WindowsInput.Native; //NuGet
 bool FirstTime = true;
 while (true){
-    if (User32.GetAsyncKeyState(0x2E) != 0 && FirstTime == true) {
+    /*(if (User32.GetAsyncKeyState(0x2E) != 0 && FirstTime == true) {
         RunMacros();
         FirstTime = false;
-    }
+    }*/
     CheckForKeyboardInput();
-    CheckForNewGame();
+    //CheckForNewGame();
 }
 static void CheckForKeyboardInput() {
     InputSimulator IS = new InputSimulator();
@@ -17,121 +17,104 @@ static void CheckForKeyboardInput() {
     int SleepTime = 0;
     Char LetterPressed = ' ';
     bool CanJump = false;
-    if (User32.GetAsyncKeyState(0x51) != 0) //"Q"
-    {
+    if (User32.GetAsyncKeyState(0x51) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 550;
         LetterPressed = 'Q';
         CanJump = true;
       
     }
-    else if (User32.GetAsyncKeyState(0x57) != 0) //"W"
-    {
+    else if (User32.GetAsyncKeyState(0x57) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 500;
         LetterPressed = 'W';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x45) != 0) //"E"
-    {
+    else if (User32.GetAsyncKeyState(0x45) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 450;
         LetterPressed = 'E';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x52) != 0) //"R"
-    {
+    else if (User32.GetAsyncKeyState(0x52) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 400;
         LetterPressed = 'R';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x54) != 0) //"T"
-    {
+    else if (User32.GetAsyncKeyState(0x54) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 350;
         LetterPressed = 'T';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x59) != 0) //"Y"
-    {
+    else if (User32.GetAsyncKeyState(0x59) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 300;
         LetterPressed = 'Y';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x55) != 0) //"U"
-    {
+    else if (User32.GetAsyncKeyState(0x55) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 250;
         LetterPressed = 'U';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x49) != 0) //"I"
-    {
+    else if (User32.GetAsyncKeyState(0x49) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 200;
         LetterPressed = 'I';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x41) != 0) //"A"
-    {
+    else if (User32.GetAsyncKeyState(0x41) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 550;
         LetterPressed = 'A';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x53) != 0) //"S"
-    {
+    else if (User32.GetAsyncKeyState(0x53) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 500;
         LetterPressed = 'S';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x44) != 0) //"D"
-    {
+    else if (User32.GetAsyncKeyState(0x44) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 450;
         LetterPressed = 'D';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x46) != 0) //"F"
-    {
+    else if (User32.GetAsyncKeyState(0x46) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 400;
         LetterPressed = 'F';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x47) != 0) //"G"
-    {
+    else if (User32.GetAsyncKeyState(0x47) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 350;
         LetterPressed = 'G';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x48) != 0) //"H"
-    {
+    else if (User32.GetAsyncKeyState(0x48) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 300;
         LetterPressed = 'H';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x4A) != 0) //"J"
-    {
+    else if (User32.GetAsyncKeyState(0x4A) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 250;
         LetterPressed = 'J';
         CanJump = true;
     }
-    else if (User32.GetAsyncKeyState(0x4B) != 0) //"K"
-    {
+    else if (User32.GetAsyncKeyState(0x4B) != 0) {
         VKC = VirtualKeyCode.RIGHT;
         SleepTime = 200;
         LetterPressed = 'K';
         CanJump = true;
     }
-    if (CanJump)
-    {
+    if (CanJump) {
         IS.Keyboard.KeyDown(VirtualKeyCode.SPACE);
         IS.Keyboard.KeyDown(VKC);
         Thread.Sleep(SleepTime);
@@ -142,7 +125,7 @@ static void CheckForKeyboardInput() {
             LetterPressed + "' Hold for " + SleepTime + "ms");
     }
 }
-static void RunMacros()
+/*static void RunMacros()
 {
     InputSimulator IS = new InputSimulator();
     VirtualKeyCode VKC = new VirtualKeyCode();
@@ -215,4 +198,4 @@ static void CheckForNewGame()
         Thread.Sleep(10000);
         RunMacros();
     }
-}
+}*/
