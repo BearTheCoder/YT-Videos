@@ -4,12 +4,13 @@ using WindowsInput; //NuGet
 using WindowsInput.Native; //NuGet
 bool FirstTime = true;
 while (true){
-    /*(if (User32.GetAsyncKeyState(0x2E) != 0 && FirstTime == true) {
-        RunMacros();
+    // "0x2E" is the "DELETE" key - This if statement runs the macros stored in the array without needing to restart
+    (if (User32.GetAsyncKeyState(0x2E) != 0 && FirstTime == true) {
+        RunMacros(); //GOTO line 130
         FirstTime = false;
-    }*/
-    CheckForKeyboardInput();
-    //CheckForNewGame();
+    }
+    CheckForKeyboardInput(); //Used to play manually - GOTO line 15
+    CheckForNewGame(); //Checks for the "PAGE DOWN" key to restart the game - GOTO line 152
 }
 static void CheckForKeyboardInput() {
     InputSimulator IS = new InputSimulator();
@@ -17,6 +18,7 @@ static void CheckForKeyboardInput() {
     int SleepTime = 0;
     Char LetterPressed = ' ';
     bool CanJump = false;
+    // I couldn't think of a better way to write this, so here you go 16 "if" statements.
     if (User32.GetAsyncKeyState(0x51) != 0) {
         VKC = VirtualKeyCode.LEFT;
         SleepTime = 550;
@@ -125,7 +127,7 @@ static void CheckForKeyboardInput() {
             LetterPressed + "' Hold for " + SleepTime + "ms");
     }
 }
-/*static void RunMacros()
+static void RunMacros()
 {
     InputSimulator IS = new InputSimulator();
     VirtualKeyCode VKC = new VirtualKeyCode();
@@ -198,4 +200,4 @@ static void CheckForNewGame()
         Thread.Sleep(10000);
         RunMacros();
     }
-}*/
+}
