@@ -1,3 +1,8 @@
+/*
+  Edit this array to change the random values that appear when you click the 
+  "randomize bingo card" button.
+*/
+
 let BingoCardDefaultOptions = [
   "Wins a crown in Fall Guys.",
   "MVP in Valorant.",
