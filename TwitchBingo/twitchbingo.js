@@ -1,3 +1,9 @@
+/*
+  Twitch API reference: https://dev.twitch.tv/docs/api/reference
+  Main code reference: https://devsdash.com/tutorials/twitch-api-javascript
+*/
+
+
 // *****     Global Variables     *****
 let ClientID = ""; //Add your client ID;
 let ClientSecret = ""; //Add your client secret;
@@ -31,6 +37,7 @@ async function GetCategory(SearchQuery) {
 }
 
 function GetTwithAuth() {
+  //This function returns the bearer token.
   let URL = `https://id.twitch.tv/oauth2/token?client_id=${ClientID}&client_secret=${ClientSecret}&grant_type=client_credentials`;
   return fetch(URL, { method: "POST" }).then((res) => res.json()).then((data) => { return data; });
 }
@@ -255,14 +262,6 @@ function DisableRandomizeButton(){
 
 function EnableRandomizeButton(){
   document.getElementById("RandomizeBingoCardButton").disabled = false;
-}
-
-// *****     QOL - Testing - Delete if published     *****
-function FillAllSquaresForTesting() {
-  let ElementArray = document.querySelectorAll("textarea");
-  for(let Node of ElementArray){
-    Node.value = "This is a test";
-  }
 }
 
 // On Init - On Load
