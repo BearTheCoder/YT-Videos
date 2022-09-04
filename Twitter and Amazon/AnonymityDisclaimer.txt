@@ -1,0 +1,19 @@
+DISCLAIMER ABOUT ANONYMITY.
+So, here’s the thing, can I guarantee that you will be 100% anonymous? The short answer is no.
+Technically, if I wanted to keep track of what is being sent to me, and by who, I could code that easily.
+Ultimately, this comes down to trust. 
+As it stands, the program deletes your message from my Twitter as soon as it is read by the program, the only way I can connect what is sent to me with the person who selected it is by actively watching my program work.
+With that being said, the program is being ran on a laptop that is setup to run with the screen closed.
+Besides the message being sent to me, there is only two other things that you may be worried about. 
+1.	The JSON files that my program keeps track of.
+2.	The error handling.
+For the JSON handling. YES. I keep track of which users have sent me a message (as well as total spent). BUT I AM NOT keeping track of the link or product they have selected. Also, the information I am saving is the unique user ID that Twitter assigns to you on the back end, and NOT your username. I would have to write a separate program to decipher the user ID and connect it to your username. So, in the end, I would have to go through extra work to decipher your user ID, and then after all that I would still have no clue what you sent me. On top of all this, the program is designed to delete the JSON file after the program closes (I.E.: when the application reaches an end state.)
+For the error handling, this is opposite of the JSON handling issue. Whenever the program encounters an error, it takes a screenshot of the webpage and sends it to my email so I can dissect what the issue is. BUT, with the Twitter message being deleted from my Twitter, I will have no clue who sent the product. Also, if the program encounters an error in which it has to send me an email, the likely scenario is that the product sent is not valid and wouldn’t met requirements anyways.
+The only other situation where a screenshot is sent to my email is when the program encounters a captcha, in which case no product information is shown.
+So, can I ensure you stay anonymous? No. But have I set up as many systems as possible to help with anonymity? Yes. In which case you have to ask yourself, why go through the trouble of programming everything to help with anonymity, telling you that I can’t guarantee you are anonymous, only to underhand everything I have done to ruin the idea of this project.
+Yes, it is my birthday, but that is just an excuse. I had this idea way before I thought about using the “birthday” angle. This idea mainly stemmed from Michael Reeves video about Twitter decorating his room, and Ludwig because he hosts “Chat Buys Me Stuff” streams.
+Lastly, and don’t take this the wrong way:
+The only drawback from not being anonymous is that I find out who you are and what you sent me. Basically, the only risk to you by not being anonymous is that your social standing with a someone on the internet is lowered.
+And that statement implies that A: I care who you are and B: I am sensitive enough to think less of someone because I asked them to send me any product they can think of off of amazon.
+And, letting you know now, both of those are unlikely unless you are someone I talk to frequently.
+That being said, I love you and thanks again <3
