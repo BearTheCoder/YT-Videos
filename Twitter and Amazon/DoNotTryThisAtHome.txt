@@ -1,0 +1,36 @@
+DISCLAIMER: DO NOT TRY THIS AT HOME.
+I feel obligated to say that you should not try this at home unless you know what you are doing.
+This project essentially gives anyone on the internet access to my home network and laptop through Twitter.
+On top of that, because I am ensuring anonymity through this project, the program will run unmanaged for two weeks.
+That being said, a lot of thought has gone into security, testing, and prevention of malicious intent.
+
+Firstly, the program only searches for and extracts Amazon links (https://www.amazon.com). Any message that contains anything other than an Amazon link will be ignored. On top of that, if any user sends a link other than an Amazon link, the program assumes malicious intent and blocks the user to prevent them from sending any other links.
+
+Secondly, the program does NOT use any link that is provided by the sender. Which, without some digging for information, sounds impossible. But fortunately, Amazon has made this very possible using the ASIN number. This ASIN number is essentially the unique product ID that amazon assigns each product. And the ASIN number can be found in the Amazon product page URL.
+
+Here is an actual Amazon product link, the ASIN number is B07YWWGNVS, can you see it?
+
+https://www.amazon.com/DEVICO-Utensils-Stainless-Silverware-Chopsticks/dp/B07YWWGNVS/?_encoding=UTF8&pd_rd_w=XEYap&content-id=amzn1.sym.8cf3b8ef-6a74-45dc-9f0d-6409eb523603&pf_rd_p=8cf3b8ef-6a74-45dc-9f0d-6409eb523603&pf_rd_r=S0KD0QAEXEB0XE9080DE&pd_rd_wg=AUzhj&pd_rd_r=04199001-ab72-494d-9baf-61e99ac59740&ref_=pd_gw_ci_mcx_mi
+
+Here is another link with an ASIN number of 1501110365:
+
+https://www.amazon.com/Ends-Us-Novel-Colleen-Hoover/dp/1501110365/?_encoding=UTF8&pd_rd_w=f8uN5&content-id=amzn1.sym.8cf3b8ef-6a74-45dc-9f0d-6409eb523603&pf_rd_p=8cf3b8ef-6a74-45dc-9f0d-6409eb523603&pf_rd_r=M6EZZWW374CW519F3514&pd_rd_wg=vX7bv&pd_rd_r=0dff0ec2-83a1-4fcd-923a-b3f03fed5715&ref_=pd_gw_ci_mcx_mi
+
+Using C# I can extract the ASIN number by searching for “/dp/” in the URL and then grabbing the next 10 characters after that, then send it to Amazon’s API through the “Add to Cart form”.
+So, instead of clicking on the link sent by the user, I instead would be sending Chrome a link that I formulated based on the link provided by the user.
+
+Which looks like this:
+
+https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=Associate+Tag&ASIN.1=B07YWWGNVS&Quantity.1=1&add=add
+
+So, even though I previously determined that the link is from Amazon as an extra layer of caution, I formulate MY OWN LINK to send to Chrome to ensure that my program is going exactly where I want it to go.
+
+Lastly, the program is designed to send screenshots to my email every time the program experiences an error. And I can remote access the computer from wherever I am. So, if necessary, I can access my computer, and stop the program from running. Also, the program is designed to shutdown if an “unexpected” error occurs. Meaning, there are several expected and common errors that are managed within the program. Unexpected errors occur when either the program or the website does something, well, unexpected, and going to a website outside of Amazon is considered “unexpected”. 
+This is the weakest argument I have, and though the other methods in place seemingly make it impossible for the program to ever reach this point, it is still there as an extra layer of caution.
+On top of all this, I have spent the past week testing, editing, reprogramming, and testing again so I would be comfortable releasing this project.
+
+The internet can be an awful and vile place.
+So, please ensure if you were to write a program similar to this you use the utmost caution to prevent malicious attacks.
+And if you are unsure that your program is 100% safe, do not release it.
+Thanks again. Ok, bye.
+-Bear
