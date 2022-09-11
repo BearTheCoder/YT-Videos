@@ -1,3 +1,18 @@
+/*
+    Hi, Hello.
+
+    A couple developer notes.
+        1.) You might want to serialize "ProductsPurchased" to JSON and recall it if necessary.
+            I don't know why I didn't save this info to JSON. Must have slipped my mind.
+        2.) I used two JSON files because I don't use JSON that much and it was much easier and time
+            effective to use two files instead of having to learn how to use one file.
+    I am very much a "if it works it works" type of programmer and this program works VERY WELL for what I needed.
+    If you need it for you project you might have to heavily alter it because I don't exactly think of other developers
+    when I program personal projects.
+    
+    Love you. Ok, Bye.
+*/
+
 using System;
 using System.IO;
 using System.Net;
@@ -59,14 +74,13 @@ namespace TwitterTest2
                             if (UserIDS.Contains(IM.SenderId))
                             {
                                 // User already had successful purchase.
-                                string Reply = "Thank you for supplying me with another link, but according to my JSON file you've already sent me something! " +
-                                    "If you feel as though this is a mistake, please let me know on discord! Thank you! https://discord.gg/4QJqRceX (This message is automated - Do not reply)";
+                                string Reply = "User already had a successful purchase twitter reply message...";
                                 SendTwitterReply(Reply, UserClient, IM);
                             }
                             else
                             {
                                 //User has not had successful purchase
-                                IWebDriver WDriver = new ChromeDriver(@"C:\SeleniumDrivers");
+                                IWebDriver WDriver = new ChromeDriver(@""); // INPUT PATH TO CHROMEDRIVE.EXE HERE
                                 try
                                 {
                                     bool Continue = AddToCartMacros(WDriver, IM, UserClient);
@@ -112,10 +126,7 @@ namespace TwitterTest2
                         else
                         {
                             // Twitter message is not a link...
-                            string Reply = "Hi, hello. This is Bear! Currently I am working on a project that uses Twitter's messaging system. As you are reading this, I have a program scanning my Twitter messages " +
-                                "for Amazon links and *ONLY* Amazon links (https links only), after it scans my mailbox it *DELETES EVEYTHING*. If you knew that already, you are receiving this message because your " +
-                                "message was not an Amazon link or contained something more than just a link. Please resend JUST THE LINK. If you have no clue what I am talking about and you " +
-                                "are just trying to get ahold of me, try Discord! https://discord.gg/4QJqRceX (This message is automated - Do not reply)";
+                            string Reply = "Not a link twitter message goes here...";
                             SendTwitterReply(Reply, UserClient, IM);
                         }
                     End:
@@ -173,7 +184,6 @@ namespace TwitterTest2
                         Console.WriteLine("Checking for buying options...");
                         // Buying Options
                         LocalWDriver.FindElement(By.LinkText("See All Buying Options")).SendKeys(Keys.Return);
-                        //LocalWDriver.FindElement(By.XPath("/html/body/div[1]/div[2]/div[4]/div[1]/div[5]/div[5]/div/div/div/form/div/div/div[2]/span/span/span/a")).SendKeys(Keys.Return);
                         Thread.Sleep(2000);
                         LocalWDriver.FindElement(By.XPath("/html/body/div[1]/span/span/span/div/div/div[4]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/span/span/span/span/input")).SendKeys(Keys.Return);
                         Thread.Sleep(1000);
@@ -202,20 +212,18 @@ namespace TwitterTest2
             }
             else if (LocalIM.Entities.Urls[0].ExpandedURL.Contains(".com"))
             {
-                //Possible Malacious link
-                string Reply = "Seems as though this is not an Amazon link!... " +
-                    "Unfortunately, I have to presume malcious intent. From this point on you will be blocked! " +
-                    "Sorry about the inconvenience that this may cause! If you believe this to be a mistake, please let me know on discord! Thank you! https://discord.gg/4QJqRceX" +
-                    "(This message is automated - Do not reply)";
+                //Possible Malacious link - Block User
+                string Reply = "Link other than amazon link twitter reply message...";
                 SendTwitterReply(Reply, LocalClient, LocalIM);
                 LocalWDriver.Quit();
+                // Line below BLOCKS USER. Comment out if you don't want that to happen.
                 LocalClient.Users.BlockUserAsync(LocalIM.SenderId);
                 return true;
             }
             else
             {
                 //No link detected
-                string Reply = "Hmm. No link was detected! Please try again with an amazon link! (This message is automated - Do not reply)";
+                string Reply = "No link detected twitter reply message...";
                 SendTwitterReply(Reply, LocalClient, LocalIM);
                 LocalWDriver.Quit();
                 return true;
@@ -356,7 +364,7 @@ namespace TwitterTest2
                     // Uncomment Lines below to place order
                     LocalWDriver.FindElement(By.Name("placeYourOrder1")).SendKeys(Keys.Return); // (CAUTION) THIS HITS THE PLACE ORDER BUTTON AND SPENDS MONEY!!!!
                     Thread.Sleep(5000); //Allow order to be place...
-                    string Reply = "Your product has been purchased! Thanks again! I look forward to seeing what you bought me! <3 (This message is automated - Do not reply)";
+                    string Reply = "Confirmation twitter reply message...";
                     SendTwitterReply(Reply, LocalTwitterClient, LocalIM);
                     // Adds user to User JSON file to prevent another purchase
                     LocalUserIDs.Add(LocalIM.SenderId);
@@ -365,8 +373,8 @@ namespace TwitterTest2
                 }
                 else
                 {
-                    string Reply = "Unfortunately, we have reached the end of the project. Technically you shouldn't be seeing this message, but hell here we are. <3 you! " +
-                    "(This message is automated - Do not reply)";
+                    // This code should be unreachable, but is here just in case.
+                    string Reply = "End of project twitter reply message...";
                     SendTwitterReply(Reply, LocalTwitterClient, LocalIM);
                     LocalIM.DestroyAsync().Wait();
                     string Reason = "The application has detected that the total amount spent is over $1000, through 'unreachable code'.";
@@ -376,8 +384,7 @@ namespace TwitterTest2
             }
             else
             {
-                string Reply = "The product you supplied is not less than $50, please try again with a product that is withing specifications! Thank you! " +
-                    "(This message is automated - Do not reply)";
+                string Reply = "Product too expensive twitter repsonse message...";
                 SendTwitterReply(Reply, LocalTwitterClient, LocalIM);
             }
         }
