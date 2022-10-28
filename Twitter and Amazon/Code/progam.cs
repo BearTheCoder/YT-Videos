@@ -6,6 +6,7 @@
             I don't know why I didn't save this info to JSON. Must have slipped my mind.
         2.) I used two JSON files because I don't use JSON that much and it was much easier and time
             effective to use two files instead of having to learn how to use one file.
+        3.) I didn't set passwords to an environment variable because I didn't feel like it.
     I am very much a "if it works it works" type of programmer and this program works VERY WELL for what I needed.
     If you need it for you project you might have to heavily alter it because I don't exactly think of other developers
     when I program personal projects.
