@@ -1,12 +1,16 @@
+// Below is a Perlin Noise type script I wrote while studing Perlin Noise.
+// There are some differences between Mathf.PerlinNoise() and my script, primarily that my script is inherently flawed.
+
+
 using System.Collections.Generic;
 using UnityEngine;
 public class MyPerlinNoiseScript : MonoBehaviour {
-    int Texture_X = 50;
-    int Texture_Y = 50;
-    float ScalingFactor = 5f;
-    int XOffset = 100;
-    int YOffset = 58;
-    private void Start() {
+    public int Texture_X = 100;
+    public int Texture_Y = 100;
+    public float ScalingFactor = 5f;
+    public int XOffset = 100;
+    public int YOffset = 58;
+    private void Update() {
         //SingleGridPointGradient();
         PerlinNoise2();
     }
@@ -14,7 +18,7 @@ public class MyPerlinNoiseScript : MonoBehaviour {
         List<PerlinGrid> PG = new List<PerlinGrid>();
         for (int X = XOffset; X < Mathf.CeilToInt(ScalingFactor) + XOffset + 1; X++) {
             for (int Y = YOffset; Y < Mathf.CeilToInt(ScalingFactor) + YOffset + 1; Y++) {
-                PG.Add(new PerlinGrid(X, Y, Random.Range(0f, 360f)));
+                PG.Add(new PerlinGrid(X, Y, CreateSeed(X, Y, 4827)));
             }
         }
         Renderer QuadRenderer = GetComponent<Renderer>();
@@ -73,8 +77,7 @@ public class MyPerlinNoiseScript : MonoBehaviour {
         QuadTexture.Apply();
         QuadRenderer.material.mainTexture = QuadTexture;
     }
-    private void SingleGridPointGradient()
-    {
+    private void SingleGridPointGradient() {
         Renderer QuadRenderer = GetComponent<Renderer>();
         Texture2D QuadTexture = new Texture2D(Texture_X, Texture_Y);
         float UnitVectorAngle = 5;
@@ -94,14 +97,9 @@ public class MyPerlinNoiseScript : MonoBehaviour {
         QuadTexture.Apply();
         QuadRenderer.material.mainTexture = QuadTexture;
     }
-
-    private float[] CreateSeed(int SeedCount)
-    {
-        float[] Seed = new float[SeedCount];
-        for (int i = 0; i < SeedCount; i++)
-        {
-            Seed[i] = Random.Range(0f, 360f);
-        }
-        return Seed;
+    private float CreateSeed(int GridXLoc, int GridYLoc, int Seed){
+        int MiddleSquareSquare = (int)Mathf.Pow((float)(Seed * Mathf.Tan(GridYLoc)) + GridXLoc, 2f) / 2;
+        float RandValue = (MiddleSquareSquare * Mathf.Tan(GridXLoc) + GridYLoc) % 360;
+        return RandValue;
     }
 }
